@@ -1,180 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Vertex Capital Labs</title>
-  <style>
-    :root {
-      --bg-dark: #1C1C1C;
-      --bg-darker: #0F0F0F;
-      --text-white: #FFFFFF;
-      --button-bg: #D0D0D0;
-      --button-text: #1A1A1A;
-      --muted-gray: #6B6B6B;
-      --avatar-size: 140px;
-      --avatar-border: 3px solid rgba(255, 255, 255, 0.7);
-      --avatar-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-      --thumb-size: 48px;
-      --thumb-radius: 12px;
-      --button-radius: 24px;
-      --button-padding: 14px 16px;
-      --button-gap: 12px;
-      --button-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 8px 24px rgba(0, 0, 0, 0.25);
-      --spacing-sm: 16px;
-      --spacing-md: 24px;
-      --spacing-xl: 48px;
-      --line-height: 1.5;
-    }
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Vertex Capital Labs</title>
+<style>
+/* ---------- CSS Custom Properties ---------- */
+:root{
+  --bg-start:#1C1C1C;
+  --bg-end:#0F0F0F;
+  --white:#FFFFFF;
+  --text-dark:#1A1A1A;
+  --gray:#D0D0D0;
+  --gray-muted:#6B6B6B;
+  --radius-avatar:50%;
+  --radius-thumb:12px;
+  --radius-pill:24px;
+  --space-xs:8px;
+  --space-s:16px;
+  --space-m:24px;
+  --font:system-ui,-apple-system,'Inter','SF Pro Text',sans-serif;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* ---------- Base ---------- */
+html,body{
+  height:100%;
+  margin:0;
+  color:var(--white);
+  font-family:var(--font);
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+  touch-action:manipulation;
+  overscroll-behavior:none;
+  background:linear-gradient(to bottom,var(--bg-start),var(--bg-end));
+}
+body::before{           /* noise / grain overlay */
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:2px 2px;
+  mix-blend-mode:overlay;
+  opacity:.35;
+}
+*{-webkit-tap-highlight-color:transparent;}
 
-    html, body {
-      height: 100%;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: system-ui, -apple-system, "Inter", sans-serif;
-      color: var(--text-white);
-      -webkit-text-size-adjust: 100%;
-      touch-action: manipulation;
-      overscroll-behavior: none;
-    }
+/* ---------- Layout ---------- */
+main{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:var(--space-m)var(--space-s);
+  box-sizing:border-box;
+}
+.card{
+  width:100%;
+  max-width:420px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:var(--space-m);
+}
 
-    /* Wrapper to lock 9:16 ratio */
-    .wrapper {
-      aspect-ratio: 9/16;
-      height: 100vh;
-      background: linear-gradient(to bottom, var(--bg-dark), var(--bg-darker));
-      overflow-y: auto;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
+/* ---------- Avatar ---------- */
+.avatar{
+  width:140px;
+  height:140px;
+  border-radius:var(--radius-avatar);
+  object-fit:cover;
+  outline:3px solid rgba(255,255,255,.7);
+  box-shadow:0 6px 24px rgba(0,0,0,.35);
+}
 
-    main {
-      width: 100%;
-      max-width: 420px;
-      padding: var(--spacing-md);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: var(--spacing-xl);
-    }
+/* ---------- Typography ---------- */
+.handle{
+  margin:0;
+  font-weight:700;
+  font-size:clamp(24px,5vw,32px);
+  letter-spacing:-.02em;
+}
+.desc{
+  margin:0;
+  font-size:17px;
+  line-height:1.5;
+}
 
-    .avatar {
-      width: var(--avatar-size);
-      height: var(--avatar-size);
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: var(--avatar-shadow);
-      outline: var(--avatar-border);
-    }
-
-    .profile-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--spacing-sm);
-    }
-
-    .handle {
-      font-size: 28px;
-      font-weight: 800;
-    }
-
-    .description {
-      font-size: 17px;
-      line-height: var(--line-height);
-      max-width: 380px;
-    }
-
-    nav {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-md);
-    }
-
-    .button {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--button-padding);
-      gap: var(--button-gap);
-      border-radius: var(--button-radius);
-      background: var(--button-bg);
-      box-shadow: var(--button-shadow);
-      text-decoration: none;
-      color: var(--button-text);
-      width: 100%;
-    }
-
-    .button-content {
-      display: flex;
-      align-items: center;
-      gap: var(--button-gap);
-      flex: 1;
-      min-width: 0;
-    }
-
-    .thumb {
-      width: var(--thumb-size);
-      height: var(--thumb-size);
-      border-radius: var(--thumb-radius);
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .label {
-      font-weight: 600;
-      font-size: 16px;
-      text-transform: uppercase;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .more-icon {
-      color: var(--muted-gray);
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-  </style>
+/* ---------- Buttons ---------- */
+.button{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  padding:14px 16px;
+  margin-top:var(--space-s);
+  background:var(--gray);
+  color:var(--text-dark);
+  text-decoration:none;
+  border-radius:var(--radius-pill);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    0 8px 24px rgba(0,0,0,.25);
+}
+.button-content{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex:1 1 auto;
+  min-width:0;
+}
+.thumb{
+  width:48px;
+  height:48px;
+  border-radius:var(--radius-thumb);
+  object-fit:cover;
+  flex-shrink:0;
+}
+.label{
+  font-size:18px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  color:var(--text-dark);
+  line-height:1.3;
+}
+.more{
+  flex-shrink:0;
+  margin-left:var(--space-xs);
+  font-size:24px;
+  color:var(--gray-muted);
+  line-height:1;
+}
+</style>
 </head>
 <body>
-  <div class="wrapper">
-    <main>
-      <div class="profile-info">
-        <img class="avatar" src="https://i.postimg.cc/765025N2/m-ali-raza-14040603-202127748.jpg" alt="Vertex Capital Labs profile photo">
-        <h1 class="handle">@vertexcapitallabs</h1>
-        <p class="description">📈 Welcome to the world of smart trading! Here, we share simple strategies, daily insights, and proven methods to help you turn knowledge into profit.</p>
+<main>
+  <div class="card">
+    <img class="avatar"
+         src="https://i.postimg.cc/765025N2/m-ali-raza-14040603-202127748.jpg"
+         alt="Vertex Capital Labs profile photo">
+
+    <h1 class="handle">@vertexcapitallabs</h1>
+
+    <p class="desc">
+      📈 Welcome to the world of smart trading! Here, we share simple strategies,
+      daily insights, and proven methods to help you turn knowledge into profit.
+    </p>
+
+    <a class="button"
+       href="https://broker-qx.pro/sign-up/?lid=1535921"
+       target="_blank" rel="noopener"
+       aria-label="Register for trading">
+      <div class="button-content">
+        <img class="thumb"
+             src="https://i.postimg.cc/MZDqQ9v1/e18effb8f8f40a30a5ee7e57474a9623.jpg"
+             alt="Trading registration thumbnail">
+        <span class="label">• FOR TRADING -- DO REGISTRATION HERE 🚀</span>
       </div>
-      
-      <nav aria-label="Main navigation">
-        <a class="button" href="https://broker-qx.pro/sign-up/?lid=1535921" target="_blank" rel="noopener" aria-label="Registration for trading">
-          <div class="button-content">
-            <img class="thumb" src="https://i.postimg.cc/MZDqQ9v1/e18effb8f8f40a30a5ee7e57474a9623.jpg" alt="Trading registration">
-            <span class="label">• FOR TRADING -- DO REGISTRATION HERE 🚀</span>
-          </div>
-          <span class="more-icon">⋮</span>
-        </a>
-        
-        <a class="button" href="https://t.me/+4MMGuYsa8as5MGY1" target="_blank" rel="noopener" aria-label="Join Telegram channel">
-          <div class="button-content">
-            <img class="thumb" src="https://i.postimg.cc/CLchWc0w/10ed070b487a916b33efffffccf28625-2.jpg" alt="Telegram channel">
-            <span class="label">• JOIN TELEGRAM 💸</span>
-          </div>
-          <span class="more-icon">⋮</span>
-        </a>
-      </nav>
-    </main>
+      <span class="more">⋮</span>
+    </a>
+
+    <a class="button"
+       href="https://t.me/+4MMGuYsa8as5MGY1"
+       target="_blank" rel="noopener"
+       aria-label="Join Telegram group">
+      <div class="button-content">
+        <img class="thumb"
+             src="https://i.postimg.cc/CLchWc0w/10ed070b487a916b33efffffccf28625-2.jpg"
+             alt="Telegram thumbnail">
+        <span class="label">• JOIN TELEGRAM 💸</span>
+      </div>
+      <span class="more">⋮</span>
+    </a>
   </div>
+</main>
 </body>
 </html>
