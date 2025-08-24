@@ -1,0 +1,94 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* 9:16 container */
+body, html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+/* Main Frame */
+.app {
+  width: 100vw;
+  height: 100vh;
+  max-width: 450px;   /* maintain 9:16 ratio */
+  max-height: 800px;
+  aspect-ratio: 9/16;
+  background: #111;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Section */
+.header {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+/* Content Area */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 1rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* Button */
+.btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #06beb6, #48b1bf);
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #48b1bf, #06beb6);
+}
+
+/* Footer */
+.footer {
+  padding: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  background: #000;
+}
